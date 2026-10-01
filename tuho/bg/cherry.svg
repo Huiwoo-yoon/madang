@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 260" preserveAspectRatio="xMidYMax slice">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bfe3f7"/><stop offset="1" stop-color="#fdf0f4"/></linearGradient>
+  </defs>
+  <rect width="800" height="260" fill="url(#sky)"/>
+  <g fill="#fff" opacity=".85"><ellipse cx="380" cy="40" rx="44" ry="12"/><ellipse cx="410" cy="32" rx="26" ry="11"/></g>
+  <!-- 언덕 -->
+  <path d="M0 170 Q150 120 320 160 Q500 115 650 155 Q740 135 800 150 L800 230 L0 230 Z" fill="#a8d08d"/>
+  <path d="M0 195 Q200 165 400 190 Q600 170 800 188 L800 240 L0 240 Z" fill="#8cc06f"/>
+  <!-- 정자 -->
+  <g transform="translate(400 0)">
+    <rect x="-50" y="196" width="100" height="8" fill="#b8ab96"/>
+    <g fill="#b5302a"><rect x="-44" y="150" width="7" height="46"/><rect x="37" y="150" width="7" height="46"/><rect x="-14" y="150" width="6" height="46"/><rect x="8" y="150" width="6" height="46"/></g>
+    <rect x="-48" y="146" width="96" height="6" fill="#3f8f7a"/>
+    <path d="M-80 146 Q-60 156 -40 150 L40 150 Q60 156 80 146 Q62 150 48 144 L0 112 L-48 144 Q-62 150 -80 146 Z" fill="#3a3d47"/>
+    <circle cx="0" cy="110" r="4" fill="#23252c"/>
+  </g>
+  <!-- 벚나무 -->
+  <g id="tree">
+    <path d="M150 238 C146 205 156 185 140 160 L148 158 C164 180 158 205 162 238 Z" fill="#6b4226"/>
+    <path d="M146 180 L118 158 M152 170 L180 150" stroke="#6b4226" stroke-width="5"/>
+    <g fill="#f7b8cc"><circle cx="150" cy="128" r="36"/><circle cx="112" cy="146" r="26"/><circle cx="190" cy="144" r="28"/><circle cx="128" cy="112" r="24"/><circle cx="176" cy="112" r="24"/></g>
+    <g fill="#fbd3df"><circle cx="140" cy="118" r="14"/><circle cx="180" cy="136" r="12"/><circle cx="116" cy="146" r="10"/></g>
+  </g>
+  <use href="#tree" x="490" y="-8"/>
+  <use href="#tree" transform="translate(760 40) scale(.75)"/>
+  <!-- 날리는 꽃잎 -->
+  <g fill="#f48fb1">
+    <ellipse cx="60" cy="60" rx="4" ry="2.5" transform="rotate(30 60 60)"/><ellipse cx="250" cy="90" rx="4" ry="2.5" transform="rotate(-20 250 90)"/>
+    <ellipse cx="330" cy="40" rx="4" ry="2.5" transform="rotate(50 330 40)"/><ellipse cx="470" cy="100" rx="4" ry="2.5"/>
+    <ellipse cx="560" cy="50" rx="4" ry="2.5" transform="rotate(-40 560 50)"/><ellipse cx="720" cy="80" rx="4" ry="2.5" transform="rotate(20 720 80)"/>
+    <ellipse cx="290" cy="180" rx="4" ry="2.5" transform="rotate(10 290 180)"/><ellipse cx="520" cy="200" rx="4" ry="2.5"/>
+  </g>
+  <rect x="0" y="222" width="800" height="38" fill="#8cc06f"/>
+</svg>

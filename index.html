@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>전통놀이 마당</title>
+<link rel="stylesheet" href="hub.css">
+</head>
+<body>
+
+<!-- 로그인 / 가입 -->
+<div id="login" class="overlay hidden">
+  <div class="card login-card">
+    <div class="logo">🪁</div>
+    <h1>전통놀이 마당</h1>
+    <div class="auth-tabs">
+      <button id="authLoginTab" class="sel">로그인</button>
+      <button id="authSignupTab">처음이에요 (가입)</button>
+    </div>
+    <input id="idInput" maxlength="16" placeholder="아이디 (영어 소문자·숫자 3~16자)" autocomplete="username" autocapitalize="off">
+    <input id="pwInput" type="password" placeholder="비밀번호 (6자 이상)" autocomplete="current-password">
+    <input id="nickInput" class="hidden" maxlength="10" placeholder="닉네임 (순위표에 보여요, 1~10자)">
+    <p id="authErr" class="auth-err"></p>
+    <button id="authBtn" class="btn primary">로그인</button>
+    <p id="authMode" class="hint"></p>
+  </div>
+</div>
+
+<header>
+  <div class="who">🪁 전통놀이 마당</div>
+  <div class="stat"><span id="hChar"></span> <b id="hName"></b></div>
+  <div class="stat">💰 <b id="hPoints">0</b> 포인트</div>
+  <button id="logoutBtn" class="btn tiny">로그아웃</button>
+</header>
+
+<main>
+  <h2>🎮 놀이 고르기</h2>
+  <p class="hint">포인트와 캐릭터는 모든 놀이에서 같이 써요. 아이템·레벨·트로피는 놀이마다 따로예요.</p>
+  <div class="games" id="games"></div>
+
+  <h2>🥇 종합 순위</h2>
+  <table class="rank">
+    <thead id="rankHead"></thead>
+    <tbody id="rankBody"></tbody>
+  </table>
+  <p class="hint">모든 놀이의 트로피를 더한 순위예요. (트로피 합계 → 레벨 합계 순)</p>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="api.js"></script>
+<script src="hub.js"></script>
+</body>
+</html>

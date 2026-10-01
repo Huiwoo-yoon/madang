@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 260" preserveAspectRatio="xMidYMax slice">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b9cfe4"/><stop offset="1" stop-color="#eef3f8"/></linearGradient>
+  </defs>
+  <rect width="800" height="260" fill="url(#sky)"/>
+  <!-- 눈 덮인 산 -->
+  <path d="M0 170 L110 70 L200 150 L330 40 L460 150 L560 80 L690 160 L800 100 L800 220 L0 220 Z" fill="#8ea3bb"/>
+  <g fill="#fff">
+    <path d="M110 70 L140 97 L125 92 L110 102 L95 90 L82 96 Z"/>
+    <path d="M330 40 L372 78 L352 72 L334 86 L316 72 L292 76 Z"/>
+    <path d="M560 80 L592 108 L576 102 L560 112 L546 100 L530 106 Z"/>
+  </g>
+  <path d="M0 190 Q140 150 300 185 Q470 145 620 180 Q720 160 800 175 L800 230 L0 230 Z" fill="#dfe8f1"/>
+  <!-- 초가집 -->
+  <g transform="translate(360 0)">
+    <rect x="0" y="176" width="100" height="40" fill="#c9a77a"/><rect x="38" y="190" width="24" height="26" fill="#7a5230"/>
+    <path d="M-16 180 Q50 128 116 180 Z" fill="#fff"/>
+    <path d="M-16 180 Q50 150 116 180" fill="none" stroke="#d0dbe6" stroke-width="3"/>
+  </g>
+  <!-- 눈 쌓인 소나무 -->
+  <g transform="translate(90 0)"><rect x="-4" y="196" width="8" height="24" fill="#6b4226"/><path d="M0 120 L30 170 L-30 170 Z M0 145 L36 200 L-36 200 Z" fill="#2f6b3f"/><path d="M0 120 L14 143 L-14 143 Z M0 145 L16 170 L-16 170 Z" fill="#fff"/></g>
+  <g transform="translate(680 0)"><rect x="-4" y="196" width="8" height="24" fill="#6b4226"/><path d="M0 130 L28 176 L-28 176 Z M0 150 L34 204 L-34 204 Z" fill="#2f6b3f"/><path d="M0 130 L13 152 L-13 152 Z M0 150 L15 175 L-15 175 Z" fill="#fff"/></g>
+  <g transform="translate(740 10) scale(.8)"><rect x="-4" y="196" width="8" height="24" fill="#6b4226"/><path d="M0 130 L28 176 L-28 176 Z M0 150 L34 204 L-34 204 Z" fill="#3a7a4a"/><path d="M0 130 L13 152 L-13 152 Z M0 150 L15 175 L-15 175 Z" fill="#fff"/></g>
+  <!-- 눈송이 -->
+  <g fill="#fff">
+    <circle cx="40" cy="30" r="3"/><circle cx="160" cy="60" r="2.5"/><circle cx="240" cy="20" r="3"/><circle cx="300" cy="110" r="2"/><circle cx="420" cy="50" r="3"/>
+    <circle cx="500" cy="20" r="2.5"/><circle cx="600" cy="45" r="3"/><circle cx="650" cy="120" r="2"/><circle cx="760" cy="30" r="3"/><circle cx="220" cy="140" r="2.5"/>
+    <circle cx="540" cy="140" r="2.5"/><circle cx="80" cy="110" r="2"/>
+  </g>
+  <rect x="0" y="216" width="800" height="44" fill="#f7fafd"/>
+</svg>

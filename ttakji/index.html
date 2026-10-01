@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>딱지치기 왕</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="who"><span id="hChar"></span> <span id="hName"></span> <button id="homeBtn" class="btn tiny">🏠 마당으로</button> <small id="saveState"></small></div>
+  <div class="stat">💰 <b id="hPoints">0</b> 포인트</div>
+  <div class="stat lvl">
+    <span>Lv <b id="hLevel">1</b></span>
+    <div class="xpbar"><div id="hXp"></div></div>
+    <small id="hXpText">0/10</small>
+  </div>
+  <div class="stat">🏆 <b id="hTrophy">0</b></div>
+</header>
+
+<nav>
+  <button data-tab="play" class="active">🎯 딱지치기</button>
+  <button data-tab="mart">🏪 마트</button>
+  <button data-tab="char">🦸 캐릭터</button>
+  <button data-tab="alba">🧑‍🔧 알바 공간</button>
+  <button data-tab="rank">🥇 순위</button>
+</nav>
+
+<main>
+  <!-- 딱지치기 -->
+  <section id="tab-play" class="tab">
+    <div id="bossBanner" class="boss-banner hidden">
+      <b id="bossTitle"></b>
+      <button id="bossBtn" class="btn danger">보스와 대결하기</button>
+    </div>
+
+    <div id="buffs" class="buffs"></div>
+    <div id="normalMode">
+      <div class="targets" id="targets"></div>
+    </div>
+    <div id="bossMode" class="hidden">
+      <div class="hp-row">
+        <div>나 <span id="myHp"></span></div>
+        <div>👑 대마왕 <span id="bossHp"></span></div>
+      </div>
+    </div>
+
+    <div class="arena">
+      <div id="player" class="player"><div class="player-emoji" id="meEmoji"></div><div class="player-name" id="meName"></div></div>
+      <div id="enemy" class="ttakji"><div class="face front"></div><div class="face back"></div></div>
+      <div id="floats"></div>
+    </div>
+
+    <div class="gauge"><div id="zone"></div><div id="needle"></div></div>
+    <button id="hitBtn" class="btn primary hit">딱! 치기 <small>(스페이스바)</small></button>
+    <p id="msg" class="msg">초록색 구간에서 치면 딱지가 뒤집혀요!</p>
+  </section>
+
+  <!-- 마트 -->
+  <section id="tab-mart" class="tab hidden">
+    <h2>🏪 딱지 마트</h2>
+    <details class="card stats-card" open>
+      <summary>📊 내 능력치</summary>
+      <div class="stats" id="stats"></div>
+    </details>
+    <div class="mart-tabs" id="martTabs"></div>
+    <p class="mart-intro" id="martIntro"></p>
+    <div class="grid" id="items"></div>
+    <div class="card alba-card" id="albaShop"></div>
+  </section>
+
+  <!-- 캐릭터 -->
+  <section id="tab-char" class="tab hidden">
+    <h2>🦸 캐릭터</h2>
+    <p class="mart-intro">캐릭터마다 특별한 능력이 있어요. 산 캐릭터는 언제든 바꿔서 쓸 수 있어요.</p>
+    <div class="grid" id="chars"></div>
+  </section>
+
+  <!-- 알바 공간 -->
+  <section id="tab-alba" class="tab hidden">
+    <h2>🧑‍🔧 알바 공간</h2>
+    <div id="albaRoom"></div>
+  </section>
+
+  <!-- 순위 -->
+  <section id="tab-rank" class="tab hidden">
+    <h2>🥇 순위</h2>
+    <table class="rank">
+      <thead><tr><th>순위</th><th>캐릭터</th><th>닉네임</th><th>🏆 트로피</th><th>레벨</th></tr></thead>
+      <tbody id="rankBody"></tbody>
+    </table>
+    <p class="hint">모든 플레이어의 딱지치기 순위예요. 트로피 많은 순 → 레벨 높은 순, 상위 100명까지 보여요.</p>
+  </section>
+</main>
+
+<div id="toast" class="toast hidden"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../config.js"></script>
+<script src="../api.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
