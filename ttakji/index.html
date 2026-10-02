@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>딱지치기 왕</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -46,8 +47,9 @@
       </div>
     </div>
 
-    <div class="arena">
+    <div class="arena" id="arena">
       <div id="player" class="player"><div class="player-emoji" id="meEmoji"></div><div class="player-name" id="meName"></div></div>
+      <div id="bossChar" class="boss-char hidden"></div>
       <div id="enemy" class="ttakji"><div class="face front"></div><div class="face back"></div></div>
       <div id="floats"></div>
     </div>
@@ -99,6 +101,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="../config.js"></script>
 <script src="../api.js"></script>
+<script src="../pixel.js"></script>
 <script src="game.js"></script>
 </body>
 </html>

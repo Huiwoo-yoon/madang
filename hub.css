@@ -1,9 +1,18 @@
 * { box-sizing: border-box; }
 body {
-  margin: 0; font-family: -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  margin: 0; font-family: Galmuri11, -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   background: #fdf6e3; color: #3b2f2f;
 }
 .hidden { display: none !important; }
+/* 도트 그림 (pixel.js) */
+img.px { image-rendering: pixelated; vertical-align: middle; }
+
+/* 맨 위 그림: 도트 한옥 마당 + 캐릭터들 */
+.banner {
+  height: 190px; border-radius: 14px; overflow: hidden; background: center bottom / cover #9fd3f0; image-rendering: pixelated;
+  display: flex; flex-wrap: wrap; align-content: flex-end; justify-content: center; gap: 6px; padding-bottom: 12px;
+}
+.banner img { margin-top: -40px; } /* 줄이 넘어가면 단체 사진처럼 앞줄이 뒷줄을 가린다 */
 
 header {
   display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between;
@@ -55,5 +64,7 @@ h2 { margin: 18px 0 10px; }
 .auth-err { color: #9d0208; font-size: 14px; min-height: 18px; margin: 0 0 8px; }
 
 @media (max-width: 560px) {
+  .banner { gap: 2px; }
+  .banner img { width: 36px; height: auto; margin-top: -30px; }
   .rank th, .rank td { padding: 8px 4px; font-size: 14px; }
 }

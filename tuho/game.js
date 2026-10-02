@@ -95,35 +95,48 @@ const CONSUMABLES = [
 ];
 const BUFF_SECONDS = 60;
 
-// 📍 장소: 투호를 하는 곳 (배경 그림 + 마당 바닥 색)
+// 📍 장소: 투호를 하는 곳 (배경은 pixel.js의 Pixel.scene이 그린다)
 const PLACES = [
-  { id: 'yard',   emoji: '🏠', name: '한옥 마당',   ground: '#d9b98a, #c9a66b' },
-  { id: 'palace', emoji: '🏯', name: '궁궐',        ground: '#cfcac0, #b3ada2' },
-  { id: 'beach',  emoji: '🌊', name: '바닷가',      ground: '#f2d8a0, #e3c07c' },
-  { id: 'snow',   emoji: '🏔️', name: '눈 덮인 산',  ground: '#ffffff, #dfe8f0' },
-  { id: 'cherry', emoji: '🌸', name: '벚꽃 공원',   ground: '#9ccc65, #7cb342' },
+  { id: 'yard',   emoji: '🏠', name: '한옥 마당' },
+  { id: 'palace', emoji: '🏯', name: '궁궐' },
+  { id: 'beach',  emoji: '🌊', name: '바닷가' },
+  { id: 'snow',   emoji: '🏔️', name: '눈 덮인 산' },
+  { id: 'cherry', emoji: '🌸', name: '벚꽃 공원' },
 ];
 
 // 🦸 캐릭터: 하나를 골라서 쓰고, 캐릭터마다 특별한 능력이 있다
 // 능력 칸: width(초록 구간), slow(바늘 느리게), flat(들어갈 때 +포인트), crit(크리티컬 확률),
 //          mult(화살 포인트 배율), alba(알바 수입 배율), hearts(보스전 목숨), shield(보스 공격 확률 -)
 const CHARACTERS = [
-  { id: 'kid', emoji: '🧒', name: '동네 꼬마', rarity: 'common', cost: 0, req: null,
-    ability: '능력 없음 (대신 공짜!)', flavor: '투호를 처음 배운 씩씩한 꼬마.' },
-  { id: 'grandpa', emoji: '👴', name: '투호 할아버지', rarity: 'rare', cost: 300, req: null, width: 0.05,
-    ability: '초록 구간 +5%', flavor: '"내가 어릴 땐 말이야~" 60년 경력의 투호 장인.' },
-  { id: 'ninja', emoji: '🥷', name: '그림자 닌자', rarity: 'rare', cost: 500, req: null, slow: 0.15,
-    ability: '바늘 속도 -15%', flavor: '닌자의 눈에는 모든 게 느리게 보인다.' },
-  { id: 'boss', emoji: '🧑‍💼', name: '마트 사장님', rarity: 'rare', cost: 600, req: null, alba: 1.5,
-    ability: '알바 수입 1.5배', flavor: '"알바님들 오늘도 파이팅!" 알바를 아끼는 사장님.' },
-  { id: 'wizard', emoji: '🧙', name: '투호 마법사', rarity: 'epic', cost: 900, req: reqLevel(10), crit: 0.1,
-    ability: '크리티컬 확률 +10%', flavor: '주문을 외우면 화살에서 불꽃이 튄다.' },
-  { id: 'hero', emoji: '🦸', name: '슈퍼 히어로', rarity: 'epic', cost: 1200, req: reqTrophy(1), hearts: 2, shield: 0.1,
-    ability: '보스전 목숨 +2, 보스 공격 확률 -10%', flavor: '대마왕을 무찌르러 하늘에서 날아왔다.' },
-  { id: 'robot', emoji: '🤖', name: '투호 로봇 T-1000', rarity: 'legend', cost: 2500, req: reqTrophy(2), width: 0.05, flat: 5,
-    ability: '초록 구간 +5%, 들어갈 때 +5 포인트', flavor: '계산 완료. 명중률 99.9%.' },
-  { id: 'dragon', emoji: '🐲', name: '아기 용', rarity: 'legend', cost: 4000, req: reqTrophy(3), mult: 2, crit: 0.05,
-    ability: '화살 포인트 2배, 크리티컬 +5%', flavor: '작지만 입김 한 번에 화살이 쏙 들어간다.' },
+  { id: 'kid', emoji: '🍄', name: '마리오 도령', rarity: 'common', cost: 0, req: null,
+    ability: '능력 없음 (대신 공짜!)', flavor: '빨간 저고리에 빨간 모자. "이츠 미, 마리오!" 투호는 처음이야.' },
+  { id: 'grandpa', emoji: '⛏️', name: '스티브 총각', rarity: 'rare', cost: 300, req: null, width: 0.05,
+    ability: '초록 구간 +5%', flavor: '블록을 만 개 쌓은 네모난 손은 절대 흔들리지 않는다.' },
+  { id: 'ninja', emoji: '🎤', name: '조이 낭자', rarity: 'rare', cost: 500, req: null, slow: 0.15,
+    ability: '바늘 속도 -15%', flavor: '속사포 랩을 하는 조이 눈에는 바늘이 느릿느릿.' },
+  { id: 'boss', emoji: '💎', name: '보부상 주민', rarity: 'rare', cost: 600, req: null, alba: 1.5,
+    ability: '알바 수입 1.5배', flavor: '"흐음~" 에메랄드 대신 포인트를 받는 장사의 달인.' },
+  { id: 'wizard', emoji: '🌸', name: '미라 낭자', rarity: 'epic', cost: 900, req: reqLevel(10), crit: 0.1,
+    ability: '크리티컬 확률 +10%', flavor: '곡도를 한 번 휘두르면 화살에서 불꽃이 튄다.' },
+  { id: 'hero', emoji: '💜', name: '루미 낭자', rarity: 'epic', cost: 1200, req: reqTrophy(1), hearts: 2, shield: 0.1,
+    ability: '보스전 목숨 +2, 보스 공격 확률 -10%', flavor: '악귀 잡는 헌터들의 리더. 대마왕도 무섭지 않다.' },
+  { id: 'robot', emoji: '🧨', name: '크리퍼 도령', rarity: 'legend', cost: 2500, req: reqTrophy(2), width: 0.05, flat: 5,
+    ability: '초록 구간 +5%, 들어갈 때 +5 포인트', flavor: '쉬이익… 터지기 직전의 엄청난 집중력.' },
+  { id: 'dragon', emoji: '🦖', name: '아기 용 요시', rarity: 'legend', cost: 4000, req: reqTrophy(3), mult: 2, crit: 0.05,
+    ability: '화살 포인트 2배, 크리티컬 +5%', flavor: '긴 혀를 날름! 입김 한 번에 화살이 쏙 들어간다.' },
+  // 그리스 로마 신화
+  { id: 'odysseus', emoji: '🏹', name: '오디세우스 장군', rarity: 'rare', cost: 700, req: null, width: 0.03, slow: 0.08,
+    ability: '초록 구간 +3%, 바늘 속도 -8%', flavor: '트로이 목마를 생각해 낸 꾀돌이. 열두 도끼 구멍도 꿰뚫는 명궁.' },
+  { id: 'cyclops', emoji: '👁️', name: '외눈박이 키클롭스', rarity: 'rare', cost: 800, req: null, flat: 3,
+    ability: '들어갈 때 +3 포인트', flavor: '"누가 내 항아리를 건드렸지?" 힘 하나는 장사.' },
+  { id: 'athena', emoji: '🦉', name: '아테나 낭자', rarity: 'epic', cost: 1000, req: reqLevel(8), hearts: 1, shield: 0.15,
+    ability: '보스전 목숨 +1, 보스 공격 확률 -15%', flavor: '지혜의 여신. 아이기스 방패 앞에서는 대마왕도 움찔.' },
+  { id: 'medusa', emoji: '🐍', name: '메두사 낭자', rarity: 'epic', cost: 1500, req: reqLevel(12), slow: 0.25,
+    ability: '바늘 속도 -25%', flavor: '눈이 마주치면 바늘도 돌처럼 굳어 버린다.' },
+  { id: 'poseidon', emoji: '🔱', name: '포세이돈 대감', rarity: 'legend', cost: 3000, req: reqTrophy(2), alba: 2, flat: 2,
+    ability: '알바 수입 2배, 들어갈 때 +2 포인트', flavor: '삼지창을 한 번 휘두르면 파도가 포인트를 실어 온다.' },
+  { id: 'zeus', emoji: '⚡', name: '제우스 대감', rarity: 'legend', cost: 6000, req: reqTrophy(4), mult: 2, crit: 0.15,
+    ability: '화살 포인트 2배, 크리티컬 +15%', flavor: '번개처럼 날아간 화살이 항아리에 쏙.' },
 ];
 
 // 🏡 집: 장소마다 하나씩. 사면 그 장소 배경에 내 집이 생기고, 능력이 계속 붙는다
@@ -260,8 +273,8 @@ let tab = 'play';
 
 function renderHeader() {
   $('hName').textContent = P.nickname;
-  $('hChar').textContent = me().emoji;
-  $('meEmoji').textContent = me().emoji;
+  $('hChar').innerHTML = Pixel.img(me().id, 2, true);
+  $('meEmoji').innerHTML = Pixel.img(me().id, 4);
   $('meName').textContent = me().name;
   $('hPoints').textContent = S.points;
   $('hLevel').textContent = S.level;
@@ -270,7 +283,7 @@ function renderHeader() {
   $('hXp').style.width = (max ? 100 : (S.xp / XP_PER_LEVEL) * 100) + '%';
   $('hXpText').textContent = max ? 'MAX' : `${S.xp}/${XP_PER_LEVEL}`;
   $('bossBanner').classList.toggle('hidden', !max || boss !== null);
-  $('bossTitle').textContent = `👑 레벨 20! 투호 대마왕 ${bossSpec().stage}단계가 나타났다! (하트 ${bossSpec().hp}개)`;
+  $('bossTitle').textContent = `👑 레벨 20! 투호 대마왕 저승사자 ${bossSpec().stage}단계가 나타났다! (하트 ${bossSpec().hp}개)`;
   if (tab === 'mart' || tab === 'char') refreshMart();
 }
 
@@ -323,11 +336,10 @@ const currentSpec = () => specFor(boss ? bossSpec() : target);
 
 function renderPlace() {
   const p = PLACES.find((x) => x.id === S.place) || PLACES[0];
-  $('arena').style.setProperty('--bg', `url(bg/${p.id}.svg)`);
-  $('arena').style.setProperty('--ground', `linear-gradient(${p.ground})`);
+  $('arena').style.setProperty('--bg', `url(${Pixel.scene(p.id)})`);
   const house = S.houses[p.id] && HOUSES.find((h) => h.id === p.id);
   $('myHouse').classList.toggle('hidden', !house);
-  if (house) $('myHouse').innerHTML = `${house.emoji}<span>내 집</span>`;
+  if (house) $('myHouse').innerHTML = `${Pixel.img('house', 4)}<span>내 집</span>`;
   $('places').innerHTML = '<span>📍 장소</span>' + PLACES.map((x) =>
     `<button data-p="${x.id}" class="${x.id === p.id ? 'sel' : ''}">${x.emoji} ${x.name}${S.houses[x.id] ? ' 🏡' : ''}</button>`).join('');
   $('places').querySelectorAll('button').forEach((b) => (b.onclick = () => {
@@ -361,7 +373,7 @@ function resetPot() {
   document.querySelector('.arena').classList.toggle('night', !!boss);
   e.style.left = t.dist * 100 + '%';
   e.style.setProperty('--s', t.size);
-  e.style.setProperty('--c', boss ? '#3c096c' : target.color);
+  e.querySelector('.pot-body').style.backgroundImage = `url(${Pixel.pot(boss ? '#3c096c' : target.color)})`;
   document.querySelectorAll('.arena .arrow').forEach((a) => a.remove());
 }
 
@@ -678,7 +690,7 @@ function renderAlbaShop() {
   const shop = $('albaShop');
   const cost = a.hired ? albaUpgradeCost(a.level) : ALBA_HIRE_COST;
   const bonus = [has('dorm') && '🏢 기숙사 ×2', coffeeOn() && '☕ 커피 ×3'].filter(Boolean).join(', ');
-  shop.innerHTML = `<div class="emoji">🧑‍🔧</div>
+  shop.innerHTML = `<div class="emoji">${Pixel.img('tiger', 3)}</div>
     <div class="info">${a.hired
       ? `<b>투호 알바 Lv ${a.level}</b><br>
          지금: 1초에 <b>${albaRate()}포인트</b>${bonus ? ` (${bonus})` : ''}<br>
@@ -735,6 +747,7 @@ function renderChars() {
     const owned = S.chars[c.id], using = S.char === c.id;
     const card = itemCard({
       ...c,
+      emoji: Pixel.img(c.id, 3),
       desc: '',
       effect: `✨ ${c.ability}`,
       lock: !owned && c.req && c.req(),
@@ -776,8 +789,8 @@ function renderAlba() {
   const a = S.alba;
   $('albaRoom').innerHTML = a.hired
     ? `<div class="room">
-         <div class="worker" id="worker">🧑‍🔧</div>
-         <div class="mini-pot" id="albaPot"><span class="stick"></span></div>
+         <div class="worker" id="worker">${Pixel.img('tiger', 4)}</div>
+         <div class="mini-pot" id="albaPot" style="background-image: url(${Pixel.pot(TARGETS[0].color)})"><span class="stick"></span></div>
          <div class="rate" id="albaRate">1초에 +${albaRate()} 포인트 (알바 Lv ${a.level})</div>
          <p>알바가 지금까지 벌어온 포인트: <b id="albaEarned">${a.earned}</b></p>
          <div id="albaFloats"></div>
@@ -814,7 +827,7 @@ async function renderRank() {
     const myId = API.myId();
     body.innerHTML = rows.map((p, i) =>
       `<tr class="${p.id === myId ? 'me' : ''}"><td>${['🥇', '🥈', '🥉'][i] || i + 1}</td>
-       <td>${(CHARACTERS.find((c) => c.id === p.character) || CHARACTERS[0]).emoji}</td>
+       <td>${Pixel.img(p.character, 2, true)}</td>
        <td>${escapeHtml(p.nickname)}</td><td>${p.trophies}</td><td>Lv ${p.level}</td></tr>`).join('')
       || '<tr><td colspan="5">아직 아무도 없어요.</td></tr>';
   } catch (e) {
@@ -835,6 +848,7 @@ function startGame(profile, row) {
   S.chars = profile.chars;
   S.trophies = row.trophies; // 순위에 쓰는 값은 서버 기준
   S.level = row.level;
+  $('bossChar').innerHTML = Pixel.img('saja', 5);
   renderHeader();
   renderTargets();
   renderPlace();

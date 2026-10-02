@@ -1,21 +1,21 @@
 // ===== 전통놀이 마당 (통합 시작 화면) =====
 // 놀이를 새로 추가할 때: 폴더를 만들고 여기에 한 줄 추가한다. id는 폴더 이름이자 DB의 game 값.
 const GAMES = [
-  { id: 'ttakji', emoji: '🟨', name: '딱지치기 왕', desc: '초록 구간에서 딱! 쳐서 상대 딱지를 뒤집어요.' },
-  { id: 'tuho', emoji: '🏺', name: '투호 왕', desc: '화살을 던져 항아리에 쏙 넣어요.' },
+  { id: 'ttakji', emoji: '🟨', icon: 'ttakji', name: '딱지치기 왕', desc: '초록 구간에서 딱! 쳐서 상대 딱지를 뒤집어요.' },
+  { id: 'tuho', emoji: '🏺', icon: 'pot', name: '투호 왕', desc: '화살을 던져 항아리에 쏙 넣어요.' },
 ];
-// 캐릭터 그림 (능력과 이름은 각 놀이의 game.js에 있다)
-const CHAR_EMOJI = { kid: '🧒', grandpa: '👴', ninja: '🥷', boss: '🧑‍💼', wizard: '🧙', hero: '🦸', robot: '🤖', dragon: '🐲' };
+// 캐릭터 그림은 pixel.js에 있다 (능력과 이름은 각 놀이의 game.js)
+const CHAR_IDS = ['kid', 'grandpa', 'ninja', 'boss', 'wizard', 'hero', 'robot', 'dragon', 'odysseus', 'cyclops', 'athena', 'medusa', 'poseidon', 'zeus'];
 
 const $ = (id) => document.getElementById(id);
-const charEmoji = (id) => CHAR_EMOJI[id] || CHAR_EMOJI.kid;
+const charEmoji = (id) => Pixel.img(id, 2, true);
 function escapeHtml(s) {
   return String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 }
 
 async function showHub(p) {
   $('login').classList.add('hidden');
-  $('hChar').textContent = charEmoji(p.character);
+  $('hChar').innerHTML = charEmoji(p.character);
   $('hName').textContent = p.nickname;
   $('hPoints').textContent = p.points;
   renderGames([]);
@@ -36,7 +36,7 @@ function renderGames(mine) {
   $('games').innerHTML = GAMES.map((g) => {
     const s = mine.find((r) => r.game === g.id);
     return `<a class="card game" href="${g.id}/index.html">
-      <div class="emoji">${g.emoji}</div><b>${g.name}</b><p>${g.desc}</p>
+      <div class="emoji">${Pixel.img(g.icon, 4)}</div><b>${g.name}</b><p>${g.desc}</p>
       <div class="mine">${s ? `🏆 ${s.trophies} · Lv ${s.level}` : '아직 안 해 봤어요'}</div></a>`;
   }).join('');
 }
@@ -56,6 +56,10 @@ function renderRank(rows, cols) {
      ${GAMES.map((g) => `<td>${u.by[g.id] ? `🏆 ${u.by[g.id].trophies} · Lv ${u.by[g.id].level}` : '-'}</td>`).join('')}</tr>`).join('')
     || `<tr><td colspan="${cols}">아직 아무도 없어요.</td></tr>`;
 }
+
+// 맨 위 그림: 한옥 마당에 캐릭터들이 모여 있다
+$('banner').style.backgroundImage = `url(${Pixel.scene('yard')})`;
+$('banner').innerHTML = CHAR_IDS.map((id) => Pixel.img(id, 3)).join('');
 
 // ===== 로그인 / 가입 =====
 let authMode = 'login';

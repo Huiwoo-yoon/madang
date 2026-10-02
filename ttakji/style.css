@@ -1,9 +1,11 @@
 * { box-sizing: border-box; }
 body {
-  margin: 0; font-family: -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  margin: 0; font-family: Galmuri11, -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   background: #fdf6e3; color: #3b2f2f; user-select: none;
 }
 .hidden { display: none !important; }
+/* 도트 그림 (pixel.js) */
+img.px { image-rendering: pixelated; vertical-align: middle; }
 
 header {
   display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between;
@@ -45,10 +47,18 @@ h2 { margin: 18px 0 10px; }
 .targets b { display: block; }
 
 /* 딱지 */
-.arena { position: relative; height: 230px; display: flex; align-items: center; justify-content: center; perspective: 600px; }
+.arena {
+  position: relative; height: 230px; display: flex; align-items: center; justify-content: center; perspective: 600px;
+  margin-top: 8px; overflow: hidden; border-radius: 14px; background: var(--bg) center bottom / cover, #9fd3f0; image-rendering: pixelated;
+}
+/* 보스전: 밤 */
+.arena.night { background: linear-gradient(#1b0a3ae6, #3c096c99 70%, #3c096c55), var(--bg) center bottom / cover; }
+.arena.night::before { content: ""; position: absolute; right: 12%; top: 16px; width: 36px; height: 36px; background: #f6f2cf; box-shadow: inset -8px -8px 0 #d6d1a6; }
+.boss-char { position: absolute; right: 5%; bottom: 20px; }
 /* 내 캐릭터 */
 .player { position: absolute; left: 6%; bottom: 20px; text-align: center; }
 .player-emoji { font-size: 72px; line-height: 1; }
+.player-emoji img { display: block; margin: 0 auto; }
 .player-name { font-size: 13px; font-weight: bold; background: #fff; border-radius: 8px; padding: 2px 8px; box-shadow: 0 1px 3px #0003; }
 .player.throw .player-emoji { animation: throw .45s; }
 @keyframes throw {
@@ -58,8 +68,8 @@ h2 { margin: 18px 0 10px; }
 .item.using { box-shadow: 0 0 0 3px var(--r), 0 4px 10px #0003; }
 .ttakji { width: 150px; height: 150px; position: relative; transform-style: preserve-3d; transition: transform .6s; }
 .ttakji .face {
-  position: absolute; inset: 0; border-radius: 6px; backface-visibility: hidden;
-  box-shadow: 0 6px 10px #0004;
+  position: absolute; inset: 0; border: 4px solid #2a1a1f; backface-visibility: hidden;
+  box-shadow: 6px 6px 0 #0004;
 }
 /* 딱지 모양: 사각형 + 접힌 대각선 */
 .ttakji .front {
@@ -179,6 +189,8 @@ h2 { margin: 18px 0 10px; }
 @media (max-width: 560px) {
   .player { left: 2%; }
   .player-emoji { font-size: 48px; }
+  .player-emoji img { width: 48px; height: auto; }
+  .boss-char img { width: 60px; height: auto; }
   .targets { grid-template-columns: repeat(2, 1fr); }
   nav button { font-size: 13px; padding: 10px 4px; }
 }

@@ -1,9 +1,11 @@
 * { box-sizing: border-box; }
 body {
-  margin: 0; font-family: -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  margin: 0; font-family: Galmuri11, -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   background: #fdf6e3; color: #3b2f2f; user-select: none;
 }
 .hidden { display: none !important; }
+/* 도트 그림 (pixel.js) */
+img.px { image-rendering: pixelated; vertical-align: middle; }
 
 header {
   display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between;
@@ -49,6 +51,7 @@ h2 { margin: 18px 0 10px; }
 /* 내 캐릭터 */
 .player { position: absolute; left: 3%; bottom: 20px; text-align: center; z-index: 1; }
 .player-emoji { font-size: 72px; line-height: 1; }
+.player-emoji img { display: block; margin: 0 auto; }
 .player-name { font-size: 13px; font-weight: bold; background: #fff; border-radius: 8px; padding: 2px 8px; box-shadow: 0 1px 3px #0003; }
 .player.throw .player-emoji { animation: throw .45s; }
 @keyframes throw {
@@ -56,10 +59,9 @@ h2 { margin: 18px 0 10px; }
   60% { transform: translate(55px, 10px) rotate(35deg) scale(1.1); }
 }
 .item.using { box-shadow: 0 0 0 3px var(--r), 0 4px 10px #0003; }
-.ground { position: absolute; left: 0; right: 0; bottom: 0; height: 22px; background: var(--ground, linear-gradient(#d9b98a, #c9a66b)); }
 /* 장소에 산 내 집 */
-.my-house { position: absolute; left: 17%; bottom: 16px; font-size: 64px; line-height: 1; text-align: center; filter: drop-shadow(0 3px 3px #0004); }
-.my-house span { display: block; font-size: 11px; font-weight: bold; background: #ffd166; border-radius: 8px; padding: 1px 6px; margin-top: -4px; }
+.my-house { position: absolute; left: 17%; bottom: 22px; line-height: 1; text-align: center; }
+.my-house span { display: block; font-size: 11px; font-weight: bold; background: #ffd166; border-radius: 8px; padding: 1px 6px; }
 /* 장소 고르기 */
 .places { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 10px; font-size: 14px; font-weight: bold; }
 .places button {
@@ -67,28 +69,20 @@ h2 { margin: 18px 0 10px; }
   font-size: 13px; box-shadow: 0 1px 3px #0002;
 }
 .places button.sel { border-color: #e76f51; background: #fff3ec; }
-.arena { overflow: hidden; background: var(--bg, url(bg/yard.svg)) center bottom / cover, #9fd3f0; border-radius: 14px; }
+.arena { overflow: hidden; background: var(--bg) center bottom / cover, #9fd3f0; border-radius: 14px; image-rendering: pixelated; }
 /* 보스전: 밤 */
-.arena.night { background: linear-gradient(#1b0a3ae6, #3c096c99 70%, #3c096c55), var(--bg, url(bg/yard.svg)) center bottom / cover; }
-.arena.night::before { content: "🌕"; position: absolute; right: 12%; top: 14px; font-size: 34px; }
-/* 투호 항아리: --s 크기, --c 색 */
+.arena.night { background: linear-gradient(#1b0a3ae6, #3c096c99 70%, #3c096c55), var(--bg) center bottom / cover; }
+.arena.night::before { content: ""; position: absolute; right: 12%; top: 16px; width: 36px; height: 36px; background: #f6f2cf; box-shadow: inset -8px -8px 0 #d6d1a6; }
+/* 투호 항아리: --s 크기. 그림은 game.js가 Pixel.pot(색)으로 넣는다 */
 .pot {
   position: absolute; bottom: 20px; width: calc(90px * var(--s, 1)); height: calc(110px * var(--s, 1));
   translate: -50% 0; transition: left .3s;
 }
-.pot-body {
-  position: absolute; inset: 0; background: radial-gradient(circle at 35% 40%, #fff5, transparent 45%), var(--c, #c8553d);
-  border-radius: 45% 45% 40% 40% / 30% 30% 60% 60%; box-shadow: inset -8px -6px 0 #0002, 0 4px 6px #0003;
-}
-/* 항아리 목 */
-.pot-body::before {
-  content: ""; position: absolute; left: 30%; right: 30%; top: -10%; height: 18%;
-  background: var(--c, #c8553d); filter: brightness(.8); border-radius: 4px;
-}
+.pot-body { position: absolute; inset: 0; background: center / 100% 100% no-repeat; }
 .pot.boss .pot-body::after { content: "👑"; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 40px; }
 .pot .stick { display: none; }
 .pot.in { animation: bump .35s; }
-.pot.in .pot-body { box-shadow: inset -8px -6px 0 #0002, 0 0 18px 6px #ffd166; }
+.pot.in .pot-body { filter: drop-shadow(0 0 10px #ffd166); }
 .pot.shake { animation: shake .4s; }
 @keyframes bump { 50% { scale: 1.08 .92; } }
 @keyframes shake { 0%,100% { translate: -50% 0 } 25% { translate: calc(-50% - 6px) 0 } 75% { translate: calc(-50% + 6px) 0 } }
@@ -98,7 +92,7 @@ h2 { margin: 18px 0 10px; }
   background: linear-gradient(90deg, #e63946 0 14px, #8b5e3c 14px 62px, #333 62px);
   border-radius: 2px; z-index: 2; pointer-events: none;
 }
-.boss-char { position: absolute; right: 1%; bottom: 20px; font-size: 64px; line-height: 1; }
+.boss-char { position: absolute; right: 1%; bottom: 20px; }
 
 #floats { position: absolute; inset: 0; pointer-events: none; }
 .float {
@@ -178,8 +172,7 @@ h2 { margin: 18px 0 10px; }
 .room .worker.swing { animation: swing .35s; }
 @keyframes swing { 50% { transform: translateY(20px) rotate(-15deg); } }
 .mini-pot {
-  position: relative; width: 60px; height: 70px; margin: 10px auto; background: #c8553d;
-  border-radius: 45% 45% 40% 40% / 30% 30% 60% 60%;
+  position: relative; width: 54px; height: 66px; margin: 10px auto; background: center / 100% 100% no-repeat; image-rendering: pixelated;
 }
 .mini-pot .stick {
   position: absolute; left: 50%; top: -30px; width: 4px; height: 40px; background: #8b5e3c; opacity: 0;
@@ -206,6 +199,8 @@ h2 { margin: 18px 0 10px; }
 @media (max-width: 560px) {
   .player { left: 2%; }
   .player-emoji { font-size: 48px; }
+  .player-emoji img { width: 48px; height: auto; }
+  .boss-char img { width: 60px; height: auto; }
   .targets { grid-template-columns: repeat(2, 1fr); }
   nav button { font-size: 13px; padding: 10px 4px; }
 }

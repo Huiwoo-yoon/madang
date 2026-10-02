@@ -9,6 +9,7 @@
 |---|---|
 | `index.html`, `hub.css`, `hub.js` | 통합 시작 화면 (로그인/가입, 놀이 고르기, 종합 순위) |
 | `api.js` | 모든 놀이가 같이 쓰는 계정·저장 (Supabase, 또는 config가 비었을 때 localStorage) |
+| `pixel.js` | 모든 놀이가 같이 쓰는 도트 그림 (한복 입은 캐릭터 14명 + 대마왕·알바, 한옥·궁궐 배경). 그림 파일 없이 코드로 그림 |
 | `config.js` | Supabase 주소와 공개 키 (타자연습 `type_game` 프로젝트를 같이 씀) |
 | `schema.sql` | DB 표 만들기 |
 | `ttakji/`, `tuho/` | 놀이 하나당 폴더 하나 (`index.html`, `game.js`, `style.css`) |
