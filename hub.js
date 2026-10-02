@@ -4,6 +4,11 @@ const GAMES = [
   { id: 'ttakji', emoji: '🟨', icon: 'ttakji', name: '딱지치기 왕', desc: '초록 구간에서 딱! 쳐서 상대 딱지를 뒤집어요.' },
   { id: 'tuho', emoji: '🏺', icon: 'pot', name: '투호 왕', desc: '화살을 던져 항아리에 쏙 넣어요.' },
 ];
+// 미니게임: 하루에 한 번만 보상을 받는다 (mini.js). 순위에는 들어가지 않는다
+const MINIGAMES = [
+  { id: 'sudoku', emoji: '🔢', name: '스도쿠', desc: '줄마다 숫자가 한 번씩! 어려운 판일수록 많이 받아요.', max: 2000 },
+  { id: 'wordcross', emoji: '🔤', name: '워드크로스', desc: '힌트를 보고 가로세로 낱말을 채워요. 한글과 영어가 있어요.', max: 500 },
+];
 // 캐릭터 그림은 pixel.js에 있다 (능력과 이름은 각 놀이의 game.js)
 const CHAR_IDS = ['kid', 'grandpa', 'ninja', 'boss', 'wizard', 'hero', 'robot', 'dragon', 'odysseus', 'cyclops', 'athena', 'medusa', 'poseidon', 'zeus'];
 
@@ -19,6 +24,7 @@ async function showHub(p) {
   $('hName').textContent = p.nickname;
   $('hPoints').textContent = p.points;
   renderGames([]);
+  renderMinis();
   $('rankHead').innerHTML = `<tr><th>순위</th><th>캐릭터</th><th>닉네임</th><th>🏆 합계</th>${GAMES.map((g) => `<th>${g.emoji} ${g.name}</th>`).join('')}</tr>`;
   const cols = 4 + GAMES.length;
   $('rankBody').innerHTML = `<tr><td colspan="${cols}">불러오는 중…</td></tr>`;
@@ -41,9 +47,20 @@ function renderGames(mine) {
   }).join('');
 }
 
+// 미니게임 카드: 오늘 했는지는 그 미니게임의 저장(data.day)을 보고 안다
+async function renderMinis() {
+  $('minis').innerHTML = MINIGAMES.map((g) => `<a class="card game mini" href="${g.id}/index.html">
+    <div class="emoji">${g.emoji}</div><b>${g.name}</b><p>${g.desc}</p>
+    <div class="mine" id="mini-${g.id}">…</div></a>`).join('');
+  for (const g of MINIGAMES) {
+    const row = await API.loadGame(g.id);
+    $('mini-' + g.id).textContent = row.data.day === Mini.today() ? '✅ 오늘은 했어요. 내일 또!' : `🎁 오늘 도전 가능! 최대 +${g.max}`;
+  }
+}
+
 function renderRank(rows, cols) {
   const users = {};
-  rows.forEach((r) => {
+  rows.filter((r) => GAMES.some((g) => g.id === r.game)).forEach((r) => {
     const u = (users[r.id] ||= { ...r, total: 0, levels: 0, by: {} });
     u.total += r.trophies;
     u.levels += r.level;

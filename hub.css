@@ -40,6 +40,7 @@ h2 { margin: 18px 0 10px; }
   border-top: 5px solid #e76f51; transition: transform .1s;
 }
 .game:hover { transform: translateY(-3px); }
+.game.mini { border-top-color: #2a9d8f; }
 .game .emoji { font-size: 56px; }
 .game b { font-size: 20px; }
 .game p { margin: 0; font-size: 14px; color: #6b5b4b; flex: 1; }

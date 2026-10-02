@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>워드크로스</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css">
+<link rel="stylesheet" href="../mini.css">
+</head>
+<body>
+
+<header>
+  <div class="who"><span id="hChar"></span> <span id="hName"></span> <button id="homeBtn" class="btn tiny">🏠 마당으로</button></div>
+  <div class="stat">💰 <b id="hPoints">0</b> 포인트</div>
+</header>
+
+<main>
+  <section id="menu">
+    <h1>🔤 오늘의 워드크로스</h1>
+    <p class="hint">하루에 한 번만 할 수 있어요. 한글이나 영어 중에 하나를 골라요. 한 글자 힌트를 쓰면 한 번에 10%씩 줄어요.</p>
+    <p id="doneNote" class="done-note" hidden>✅ 오늘의 워드크로스는 이미 풀었어요. 내일 또 만나요!</p>
+    <div id="langs" class="picks"></div>
+  </section>
+
+  <section id="play" hidden>
+    <div class="tools"><button type="button" id="btn-back" class="btn">← 한글·영어 고르기</button></div>
+    <h2 id="title"></h2>
+    <p id="current-clue"></p>
+    <table id="cross"></table>
+    <div class="tools">
+      <button type="button" id="btn-hint" class="btn">💡 한 글자 힌트</button>
+      <button type="button" id="btn-chosung" class="btn">초성 힌트</button>
+      <button type="button" id="btn-check" class="btn">채점</button>
+      <button type="button" id="btn-reset" class="btn">다시 하기</button>
+    </div>
+    <div id="cheer"></div>
+    <p id="message" class="msg"></p>
+    <button type="button" id="retryBtn" class="btn primary" hidden>포인트 다시 받기</button>
+    <div class="clues">
+      <div><h3>➡️ 가로</h3><ol id="clues-across"></ol></div>
+      <div><h3>⬇️ 세로</h3><ol id="clues-down"></ol></div>
+    </div>
+  </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../config.js"></script>
+<script src="../api.js"></script>
+<script src="../pixel.js"></script>
+<script src="../mini.js"></script>
+<script src="puzzles.js"></script>
+<script src="engine.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

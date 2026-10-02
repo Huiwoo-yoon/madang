@@ -1,0 +1,93 @@
+/* 미니게임 공통 모양 (스도쿠, 워드크로스) */
+* { box-sizing: border-box; }
+body {
+  margin: 0; font-family: Galmuri11, -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  background: #fdf6e3; color: #3b2f2f;
+}
+[hidden] { display: none !important; }
+img.px { image-rendering: pixelated; vertical-align: middle; }
+
+header {
+  display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between;
+  padding: 10px 20px; background: #8b5e3c; color: #fff;
+}
+header .who { font-weight: bold; font-size: 18px; }
+.stat { font-size: 17px; }
+main { max-width: 620px; margin: 0 auto; padding: 16px; text-align: center; }
+h1 { margin: 10px 0 4px; }
+h2 { margin: 12px 0 8px; }
+.hint { color: #7a6a5a; font-size: 14px; }
+
+.btn {
+  border: 0; border-radius: 10px; padding: 10px 14px; font: inherit; font-size: 15px; cursor: pointer;
+  background: #e9dcc5; color: #3b2f2f; font-weight: bold;
+}
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.btn.primary { background: #e76f51; color: #fff; }
+.btn.tiny { padding: 3px 8px; font-size: 12px; }
+.btn[aria-pressed="true"] { background: #2a9d8f; color: #fff; }
+.tools { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin: 10px 0; }
+
+/* 고르기 화면 */
+.picks { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 10px; margin-top: 12px; }
+.pick {
+  display: flex; flex-direction: column; gap: 4px; padding: 14px; border: 0; border-top: 5px solid #e76f51; border-radius: 14px;
+  background: #fff; box-shadow: 0 2px 6px #0002; font: inherit; color: inherit; cursor: pointer;
+}
+.pick b { font-size: 20px; }
+.pick span { font-size: 13px; color: #6b5b4b; }
+.pick .reward { font-size: 16px; font-weight: bold; color: #2a9d8f; }
+.pick:disabled { opacity: .5; cursor: not-allowed; }
+.done-note { background: #fff3c4; border: 2px solid #f4d35e; border-radius: 12px; padding: 12px; font-size: 17px; font-weight: bold; }
+
+.msg { font-size: 18px; min-height: 26px; }
+#cheer img { animation: cheer .5s infinite alternate; }
+@keyframes cheer { to { transform: translateY(-14px); } }
+
+/* ===== 스도쿠 ===== */
+#board { border-collapse: collapse; margin: 10px auto; border: 4px solid #2a1a1f; background: #fff; }
+#board[data-size] td {
+  --s: min(44px, calc((100vw - 44px) / 9));
+  width: var(--s); height: var(--s); padding: 0; border: 1px solid #c9bda8; text-align: center;
+  font-size: calc(var(--s) * .55); cursor: pointer; color: #2b5fa8; position: relative;
+}
+#board[data-size="4"] td { --s: min(72px, calc((100vw - 44px) / 4)); }
+#board[data-size="6"] td { --s: min(58px, calc((100vw - 44px) / 6)); }
+#board td.box-right { border-right: 4px solid #2a1a1f; }
+#board td.box-bottom { border-bottom: 4px solid #2a1a1f; }
+#board td.is-given { color: #2a1a1f; font-weight: bold; background: #f1e9d8; }
+#board td.is-revealed { color: #9d4edd; }
+#board td.is-related { background: #fdf0d0; }
+#board td.is-same { background: #ffd98a; }
+#board td.is-selected { background: #f4a261; outline: none; }
+#board td.is-conflict { color: #d00000; }
+#board td.is-correct { box-shadow: inset 0 0 0 3px #7bd389; }
+#board td.is-wrong { box-shadow: inset 0 0 0 3px #e63946; }
+.notes { display: grid; grid-template-columns: repeat(3, 1fr); font-size: calc(var(--s) * .24); line-height: 1.2; color: #7a6a5a; }
+#numpad { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+#numpad button {
+  width: 44px; height: 48px; border: 0; border-radius: 10px; background: #8b5e3c; color: #fff; font: inherit; font-size: 22px; cursor: pointer;
+}
+#numpad button.is-used-up { opacity: .35; }
+
+/* ===== 워드크로스 ===== */
+#cross { border-collapse: separate; border-spacing: 3px; margin: 10px auto; }
+#cross td { --s: min(46px, calc((100vw - 60px) / var(--cols, 8))); width: var(--s); height: var(--s); padding: 0; position: relative; }
+#cross td.cell { background: #fff; border: 3px solid #2a1a1f; }
+#cross td.in-word { background: #fdf0d0; }
+#cross td.is-active { background: #ffd98a; }
+#cross td.is-correct { border-color: #2a9d8f; }
+#cross td.is-wrong { border-color: #e63946; }
+#cross td.is-revealed input { color: #9d4edd; }
+#cross .num { position: absolute; left: 2px; top: 0; font-size: 10px; color: #7a6a5a; pointer-events: none; }
+#cross input {
+  width: 100%; height: 100%; border: 0; padding: 0; background: none; text-align: center; font: inherit;
+  font-size: calc(var(--s) * .5); color: #2b5fa8; outline: none; text-transform: uppercase;
+}
+#current-clue { background: #fff; border-radius: 12px; padding: 10px; font-size: 17px; font-weight: bold; box-shadow: 0 2px 6px #0002; min-height: 44px; }
+.clues { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; text-align: left; }
+.clues h3 { margin: 6px 0; }
+.clues ol { margin: 0; padding-left: 26px; font-size: 14px; }
+.clues li { cursor: pointer; padding: 2px 0; }
+.clues li.is-solved { color: #2a9d8f; text-decoration: line-through; }
+@media (max-width: 480px) { .clues { grid-template-columns: 1fr; } }
