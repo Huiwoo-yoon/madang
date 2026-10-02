@@ -1,0 +1,35 @@
+/* 무서운 수학 팝업 (scary.js) */
+.scary {
+  position: fixed; inset: 0; z-index: 100; overflow-y: auto; padding: 16px;
+  background: #07030df2; color: #f1e6e6; animation: scary-in .6s;
+}
+@keyframes scary-in { 0% { opacity: 0; } 20% { opacity: 1; } 30% { opacity: .3; } 45% { opacity: 1; } 55% { opacity: .5; } 100% { opacity: 1; } }
+.scary-box {
+  max-width: 560px; margin: 0 auto; background: #1a1024; border: 4px solid #8f1f25; box-shadow: 0 0 40px #e5252166;
+  padding: 0 16px 18px; text-align: center; user-select: text;
+}
+.scary-box.shake { animation: scary-shake .4s; }
+@keyframes scary-shake { 20% { translate: -10px 0; } 40% { translate: 10px 0; } 60% { translate: -6px 0; } 80% { translate: 6px 0; } }
+.scary-top {
+  height: 170px; margin: 0 -16px; background-size: cover; background-position: center bottom; image-rendering: pixelated;
+  display: flex; align-items: flex-end; justify-content: center; padding-bottom: 14px; overflow: hidden;
+}
+.scary-ghost { transform-origin: center bottom; transition: scale .4s; animation: scary-float 1.6s ease-in-out infinite alternate; }
+@keyframes scary-float { to { transform: translateY(-8px); } }
+.scary-night { margin-top: 12px; font-size: 13px; color: #c9a0a0; }
+.scary h2 { margin: 6px 0 10px; font-size: 24px; color: #ff5a5a; text-shadow: 2px 2px 0 #000; }
+.scary-story { text-align: left; font-size: 16px; line-height: 1.6; }
+.scary-story p, .scary-explain p, .scary-epilogue p { margin: 6px 0; }
+.scary b { color: #ffd23f; }
+.scary-q { font-size: 18px; font-weight: bold; background: #2a1a36; border-left: 4px solid #e52521; padding: 10px; text-align: left; }
+#scaryForm { display: flex; gap: 8px; }
+#scaryInput {
+  flex: 1; min-width: 0; padding: 10px; font: inherit; font-size: 18px; background: #0d0814; color: #fff;
+  border: 3px solid #8f1f25; border-radius: 8px; outline: none;
+}
+#scaryInput:focus { border-color: #ff5a5a; }
+.scary-msg { color: #ff8a8a; min-height: 22px; }
+.scary-hint { color: #ffd23f; font-size: 15px; }
+.scary-ok { font-size: 22px; font-weight: bold; color: #7bd389; }
+.scary-explain { text-align: left; font-size: 15px; background: #2a1a36; border-radius: 8px; padding: 8px 12px; }
+.scary-epilogue { text-align: left; font-size: 15px; font-style: italic; color: #d9b8b8; margin: 12px 0; padding: 0 12px; border-left: 3px solid #8f1f25; }

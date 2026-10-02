@@ -854,6 +854,7 @@ function startGame(profile, row) {
   renderPlace();
   newRound();
   showTab('play');
+  Scary.start(() => !!boss); // 무서운 수학: 5분마다 문제 (보스전 중에는 미룸)
 }
 
 const goHome = () => (location.href = '../index.html');
